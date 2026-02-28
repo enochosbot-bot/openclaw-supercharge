@@ -14,9 +14,15 @@ import sys
 import zipfile
 from pathlib import Path
 
-# Add script directory to path for sibling imports
-sys.path.insert(0, str(Path(__file__).parent))
 from quick_validate import validate_skill
+
+
+def _is_within(path: Path, root: Path) -> bool:
+    try:
+        path.relative_to(root)
+        return True
+    except ValueError:
+        return False
 
 
 def package_skill(skill_path, output_dir=None):
@@ -34,24 +40,24 @@ def package_skill(skill_path, output_dir=None):
 
     # Validate skill folder exists
     if not skill_path.exists():
-        print(f"[x] Error: Skill folder not found: {skill_path}")
+        print(f"[ERROR] Skill folder not found: {skill_path}")
         return None
 
     if not skill_path.is_dir():
-        print(f"[x] Error: Path is not a directory: {skill_path}")
+        print(f"[ERROR] Path is not a directory: {skill_path}")
         return None
 
     # Validate SKILL.md exists
     skill_md = skill_path / "SKILL.md"
     if not skill_md.exists():
-        print(f"[x] Error: SKILL.md not found in {skill_path}")
+        print(f"[ERROR] SKILL.md not found in {skill_path}")
         return None
 
     # Run validation before packaging
     print("Validating skill...")
     valid, message = validate_skill(skill_path)
     if not valid:
-        print(f"[x] Validation failed: {message}")
+        print(f"[ERROR] Validation failed: {message}")
         print("   Please fix the validation errors before packaging.")
         return None
     print(f"[OK] {message}\n")
@@ -66,14 +72,34 @@ def package_skill(skill_path, output_dir=None):
 
     skill_filename = output_path / f"{skill_name}.skill"
 
+    EXCLUDED_DIRS = {".git", ".svn", ".hg", "__pycache__", "node_modules"}
+
     # Create the .skill file (zip format)
     try:
-        with zipfile.ZipFile(skill_filename, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        with zipfile.ZipFile(skill_filename, "w", zipfile.ZIP_DEFLATED) as zipf:
             # Walk through the skill directory
-            for file_path in skill_path.rglob('*'):
+            for file_path in skill_path.rglob("*"):
+                # Security: never follow or package symlinks.
+                if file_path.is_symlink():
+                    print(f"[WARN] Skipping symlink: {file_path}")
+                    continue
+
+                rel_parts = file_path.relative_to(skill_path).parts
+                if any(part in EXCLUDED_DIRS for part in rel_parts):
+                    continue
+
                 if file_path.is_file():
-                    # Calculate the relative path within the zip
-                    arcname = file_path.relative_to(skill_path.parent)
+                    resolved_file = file_path.resolve()
+                    if not _is_within(resolved_file, skill_path):
+                        print(f"[ERROR] File escapes skill root: {file_path}")
+                        return None
+                    # If output lives under skill_path, avoid writing archive into itself.
+                    if resolved_file == skill_filename.resolve():
+                        print(f"[WARN] Skipping output archive: {file_path}")
+                        continue
+
+                    # Calculate the relative path within the zip.
+                    arcname = Path(skill_name) / file_path.relative_to(skill_path)
                     zipf.write(file_path, arcname)
                     print(f"  Added: {arcname}")
 
@@ -81,7 +107,7 @@ def package_skill(skill_path, output_dir=None):
         return skill_filename
 
     except Exception as e:
-        print(f"[x] Error creating .skill file: {e}")
+        print(f"[ERROR] Error creating .skill file: {e}")
         return None
 
 
@@ -98,7 +124,7 @@ def main():
 
     print(f"Packaging skill: {skill_path}")
     if output_dir:
-        print(f"  Output directory: {output_dir}")
+        print(f"   Output directory: {output_dir}")
     print()
 
     result = package_skill(skill_path, output_dir)

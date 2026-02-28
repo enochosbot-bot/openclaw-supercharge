@@ -16,26 +16,26 @@ OpenClaw Supercharge is a complete operational template for running a multi-agen
 - **Parallel agent orchestration** with dependency-sorted work packages
 - **Approval workflows** and in-flight task tracking
 - **Security protocols**: Gideon (defensive audit) + Abaddon (red-team offensive)
-- **14 production skills** included (browser automation, AI humanizer, QA dogfooding, task observer, image gen, and more)
+- **63 production skills** included (full loadout — see below)
 
 ---
 
-## Included Skills
+## Included Skills (63)
 
-| Skill | Purpose |
-|-------|---------|
-| agent-browser | Browser automation, scraping, form filling, screenshots |
-| ai-humanizer | Detect and remove AI patterns from text |
-| dogfood | Systematic QA testing — finds bugs, produces structured reports |
-| enoch-tuning | Pre-wired production setup (identity, memory, security, automation) |
-| task-observer | Monitors execution for skill improvement opportunities |
-| skill-creator | Guide for building new skills |
-| nano-banana-2 | Gemini 3.1 Flash image generation |
-| meta-ads | Meta/Facebook Ads management |
-| youtube-upload | YouTube video upload automation |
-| openclaw-antigravity-sync | Sync workflows |
+| Category | Skills |
+|----------|--------|
+| **Productivity** | 1password, apple-notes, apple-reminders, bear-notes, things-mac, notion, trello, obsidian |
+| **Communication** | himalaya (email), imsg, discord, slack, bluebubbles, wacli |
+| **Research** | summarize, oracle, gemini, xurl, blogwatcher, goplaces, weather |
+| **GitHub/Dev** | github, gh-issues, coding-agent, clawhub, mcporter |
+| **Media** | video-frames, openai-whisper, openai-whisper-api, nano-banana-2, nano-banana-pro, openai-image-gen, gifgrep, camsnap, canvas |
+| **Smart Home** | openhue, sonoscli, blucli, eightctl |
+| **Content** | ai-humanizer, sag (TTS), sherpa-onnx-tts, voice-call, spotify-player, songsee, youtube-upload |
+| **Documents** | nano-pdf, docx, peekaboo |
+| **Meta/Ops** | enoch-tuning, task-observer, skill-creator, dogfood, agent-browser, healthcheck, session-logs, model-usage |
+| **Other** | gog (Google), meta-ads, ordercli, tmux, openclaw-antigravity-sync |
 
-See `skills/README.md` for full list and installation.
+See `skills/README.md` for descriptions and `skills/<name>/SKILL.md` for each skill's documentation.
 
 ---
 
