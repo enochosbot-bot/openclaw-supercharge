@@ -16,6 +16,26 @@ OpenClaw Supercharge is a complete operational template for running a multi-agen
 - **Parallel agent orchestration** with dependency-sorted work packages
 - **Approval workflows** and in-flight task tracking
 - **Security protocols**: Gideon (defensive audit) + Abaddon (red-team offensive)
+- **14 production skills** included (browser automation, AI humanizer, QA dogfooding, task observer, image gen, and more)
+
+---
+
+## Included Skills
+
+| Skill | Purpose |
+|-------|---------|
+| agent-browser | Browser automation, scraping, form filling, screenshots |
+| ai-humanizer | Detect and remove AI patterns from text |
+| dogfood | Systematic QA testing — finds bugs, produces structured reports |
+| enoch-tuning | Pre-wired production setup (identity, memory, security, automation) |
+| task-observer | Monitors execution for skill improvement opportunities |
+| skill-creator | Guide for building new skills |
+| nano-banana-2 | Gemini 3.1 Flash image generation |
+| meta-ads | Meta/Facebook Ads management |
+| youtube-upload | YouTube video upload automation |
+| openclaw-antigravity-sync | Sync workflows |
+
+See `skills/README.md` for full list and installation.
 
 ---
 
