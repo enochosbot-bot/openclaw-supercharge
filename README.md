@@ -133,3 +133,16 @@ openclaw cron list
 - **Abaddon** (3:45 AM nightly): Red-team offensive scan. Breach posture, exposed ports, credential leaks.
 
 See `security/` for full protocols.
+
+---
+
+## Documentation
+
+| Doc | Purpose |
+|-----|---------|
+| [ENV-CHECKLIST.md](docs/ENV-CHECKLIST.md) | Required and optional environment variables |
+| [AGENT-CONFIG-EXAMPLE.md](docs/AGENT-CONFIG-EXAMPLE.md) | Multi-agent configuration in openclaw.json |
+| [OBSIDIAN-VAULT-TEMPLATE.md](docs/OBSIDIAN-VAULT-TEMPLATE.md) | Obsidian directory structure setup |
+| [COST-ESTIMATION.md](docs/COST-ESTIMATION.md) | Realistic API costs by usage level |
+| [TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) | Common issues and fixes |
+| [MIGRATION.md](docs/MIGRATION.md) | Adopting this setup on existing OpenClaw |

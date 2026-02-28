@@ -1,68 +1,65 @@
-#!/usr/bin/env bash
-# pressure-guard.sh — Context + Gateway Pressure Guard
-# Runs as part of Session Auto-Prune cron job
-# Thresholds: CONTEXT >= 1.3MB session file, GATEWAY >= 1400MB RSS
+#!/bin/bash
+# Pressure Guard — monitors context window size and gateway memory
+# Triggers auto-save/reset/resume when thresholds are hit
+# Run via cron every 2 hours
 
-set -euo pipefail
+# CUSTOMIZE THESE
+WORKSPACE="$HOME/.openclaw/workspace"
+AGENTS_DIR="$HOME/.openclaw/agents"
 
-HANDOFF_DIR="$(dirname "$0")/../shared-context/handoffs"
-CHANGELOG="$(dirname "$0")/../ops/changelog.md"
+# Thresholds
+CONTEXT_THRESHOLD_MB=1.3       # Session JSONL size in MB
+GATEWAY_RSS_THRESHOLD_MB=1400  # Gateway memory in MB
 
-CONTEXT_THRESHOLD_KB=1331  # 1.3MB in KB
-GATEWAY_THRESHOLD_MB=1400
+LOG="/tmp/pressure-guard.log"
+HANDOFFS_DIR="$WORKSPACE/shared-context/handoffs"
+CHANGELOG="$WORKSPACE/ops/changelog.md"
 
-CONTEXT_PRESSURE=false
-GATEWAY_PRESSURE=false
+echo "[$(date)] Pressure guard starting" > "$LOG"
 
-# --- Check context pressure ---
-echo "[pressure-guard] Checking session file sizes..."
-while IFS= read -r line; do
-    size_kb=$(echo "$line" | awk '{print $1}')
-    path=$(echo "$line" | awk '{print $2}')
-    if [ "$size_kb" -ge "$CONTEXT_THRESHOLD_KB" ]; then
-        echo "[pressure-guard] CONTEXT_PRESSURE: $path is ${size_kb}KB"
-        CONTEXT_PRESSURE=true
-    fi
-done < <(find ~/.openclaw/agents/*/sessions/ -name '*.jsonl' -exec du -k {} \; 2>/dev/null | sort -n)
+# Check session pressure (largest JSONL files)
+PRESSURE_HIT=false
+LARGEST=$(find "$AGENTS_DIR" -name '*.jsonl' -size +${CONTEXT_THRESHOLD_MB}M 2>/dev/null | head -1)
 
-# --- Check gateway pressure ---
-echo "[pressure-guard] Checking gateway RSS..."
-GATEWAY_RSS=$(openclaw gateway status 2>/dev/null | grep -i "rss\|memory" | grep -o '[0-9]*' | head -1 || echo "0")
-if [ "${GATEWAY_RSS:-0}" -ge "$GATEWAY_THRESHOLD_MB" ]; then
-    echo "[pressure-guard] GATEWAY_PRESSURE: Gateway RSS is ${GATEWAY_RSS}MB"
-    GATEWAY_PRESSURE=true
+if [ -n "$LARGEST" ]; then
+  SIZE=$(ls -lh "$LARGEST" | awk '{print $5}')
+  echo "CONTEXT_PRESSURE: $LARGEST is $SIZE" >> "$LOG"
+  PRESSURE_HIT=true
 fi
 
-# --- If no pressure, exit silently ---
-if [ "$CONTEXT_PRESSURE" = false ] && [ "$GATEWAY_PRESSURE" = false ]; then
-    echo "[pressure-guard] All clear. Exiting."
-    exit 0
+# Check gateway memory
+GATEWAY_RSS=$(openclaw gateway status 2>/dev/null | grep -i rss | grep -oE '[0-9]+' | head -1)
+if [ -n "$GATEWAY_RSS" ] && [ "$GATEWAY_RSS" -gt "$GATEWAY_RSS_THRESHOLD_MB" ]; then
+  echo "GATEWAY_PRESSURE: RSS is ${GATEWAY_RSS}MB" >> "$LOG"
+  PRESSURE_HIT=true
 fi
 
-echo "[pressure-guard] Pressure detected. Starting recovery..."
-
-# --- Save handoffs before reset ---
-# (The agent running this script will handle sessions_send handoffs via its LLM context)
-# This script handles the mechanical parts; the agent handles inter-agent communication.
-mkdir -p "$HANDOFF_DIR"
-echo "[pressure-guard] Handoff dir ready: $HANDOFF_DIR"
-
-# --- Restart gateway ---
-echo "[pressure-guard] Restarting gateway..."
-openclaw gateway restart
-sleep 5
-openclaw gateway status
-
-# --- Log incident ---
-TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-cat >> "$CHANGELOG" << LOGEOF
-
----
-## Pressure Guard Incident — $TIMESTAMP
-- Context pressure: $CONTEXT_PRESSURE
-- Gateway pressure: $GATEWAY_PRESSURE
-- Action: Gateway restarted
-- Handoffs saved to: $HANDOFF_DIR
-LOGEOF
-
-echo "[pressure-guard] Recovery complete. Check $HANDOFF_DIR for agent handoffs."
+if [ "$PRESSURE_HIT" = true ]; then
+  echo "[$(date)] Pressure detected — initiating recovery" >> "$LOG"
+  
+  # 1. Save handoffs from active agents
+  mkdir -p "$HANDOFFS_DIR"
+  # Note: Full implementation uses sessions_send to request handoffs
+  # from each active agent before restart.
+  
+  # 2. Restart gateway
+  echo "Restarting gateway..." >> "$LOG"
+  openclaw gateway restart >> "$LOG" 2>&1
+  sleep 5
+  
+  # 3. Verify gateway health
+  STATUS=$(openclaw gateway status 2>/dev/null | head -1)
+  echo "Gateway status after restart: $STATUS" >> "$LOG"
+  
+  # 4. Log to changelog
+  TIMESTAMP=$(date '+%Y-%m-%d %H:%M')
+  echo "" >> "$CHANGELOG"
+  echo "### [$TIMESTAMP] Pressure Guard Recovery" >> "$CHANGELOG"
+  echo "- Trigger: ${LARGEST:-gateway RSS $GATEWAY_RSS MB}" >> "$CHANGELOG"
+  echo "- Action: Gateway restart" >> "$CHANGELOG"
+  echo "- Status: $STATUS" >> "$CHANGELOG"
+  
+  echo "[$(date)] Recovery complete" >> "$LOG"
+else
+  echo "[$(date)] No pressure detected. All clear." >> "$LOG"
+fi
