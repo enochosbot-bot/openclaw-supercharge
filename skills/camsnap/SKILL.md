@@ -1,6 +1,6 @@
 ---
 name: camsnap
-description: Capture frames or clips from RTSP/ONVIF cameras.
+description: Capture frames or clips from RTSP/ONVIF cameras. Use when the user explicitly asks to capture camera footage or snapshots from a network camera. NOT for screenshots of the Mac screen (use peekaboo), phone cameras, or general image capture.
 homepage: https://camsnap.ai
 metadata:
   {

@@ -1,6 +1,6 @@
 ---
 name: nano-banana-pro
-description: Generate or edit images via Gemini 3 Pro Image (Nano Banana Pro).
+description: Generate or edit images via Gemini 3 Pro Image (Nano Banana Pro). Use when the user explicitly asks to generate or edit an image using this tool. NOT for OpenAI image gen, image analysis, or tasks not requiring image generation.
 homepage: https://ai.google.dev/
 metadata:
   {

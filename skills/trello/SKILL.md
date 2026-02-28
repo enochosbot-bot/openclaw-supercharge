@@ -1,6 +1,6 @@
 ---
 name: trello
-description: Manage Trello boards, lists, and cards via the Trello REST API.
+description: Manage Trello boards, lists, and cards via the Trello REST API. Use when the user explicitly asks to create, read, update, or manage Trello content. NOT for Notion, Things, linear project management tools, or task discussion not requiring Trello API access.
 homepage: https://developer.atlassian.com/cloud/trello/rest/
 metadata:
   {

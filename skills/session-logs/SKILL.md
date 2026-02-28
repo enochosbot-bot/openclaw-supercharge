@@ -1,6 +1,6 @@
 ---
 name: session-logs
-description: Search and analyze your own session logs (older/parent conversations) using jq.
+description: Search and analyze your own session logs (older/parent conversations) using jq. Use when the user asks to search or review past conversation history or session data. NOT for real-time session status, live monitoring, or file searches outside session logs.
 metadata: { "openclaw": { "emoji": "📜", "requires": { "bins": ["jq", "rg"] } } }
 ---
 

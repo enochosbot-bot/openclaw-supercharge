@@ -1,6 +1,6 @@
 ---
 name: gemini
-description: Gemini CLI for one-shot Q&A, summaries, and generation.
+description: Gemini CLI for one-shot Q&A, summaries, and generation. Use when the user explicitly asks to run Gemini or use the gemini CLI for a task. NOT for tasks where a built-in tool, web search, or Claude itself suffices without invoking the external CLI.
 homepage: https://ai.google.dev/
 metadata:
   {

@@ -1,6 +1,6 @@
 ---
 name: things-mac
-description: Manage Things 3 via the `things` CLI on macOS (add/update projects+todos via URL scheme; read/search/list from the local Things database). Use when a user asks OpenClaw to add a task to Things, list inbox/today/upcoming, search tasks, or inspect projects/areas/tags.
+description: Manage Things 3 via the things CLI on macOS (add/update projects and todos via URL scheme; read/search/list from the local Things database). Use when the user explicitly asks to add, list, search, or manage tasks in Things 3. NOT for Apple Reminders, Trello, Notion, or general task discussion without a Things action.
 homepage: https://github.com/ossianhempel/things3-cli
 metadata:
   {

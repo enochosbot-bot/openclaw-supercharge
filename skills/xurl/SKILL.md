@@ -1,6 +1,6 @@
 ---
 name: xurl
-description: A CLI tool for making authenticated requests to the X (Twitter) API. Use this skill when you need to post tweets, reply, quote, search, read posts, manage followers, send DMs, upload media, or interact with any X API v2 endpoint.
+description: Make authenticated requests to the X (Twitter) API v2. Use when the user explicitly asks to post, reply, quote, search, or manage content on X/Twitter. NOT for reading public tweets via web search, general social media advice, or tasks not requiring authenticated X API calls.
 metadata:
   {
     "openclaw":

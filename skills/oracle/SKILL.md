@@ -1,6 +1,6 @@
 ---
 name: oracle
-description: Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns).
+description: Best practices for using the oracle CLI (prompt + file bundling, engines, sessions, and file attachment patterns). Use only when the user explicitly asks to run oracle, bundle files for oracle, or configure an oracle session. NOT for general AI queries, summarization, or any task where a built-in tool or direct answer suffices.
 homepage: https://askoracle.dev
 metadata:
   {

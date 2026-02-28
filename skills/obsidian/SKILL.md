@@ -1,6 +1,6 @@
 ---
 name: obsidian
-description: Work with Obsidian vaults (plain Markdown notes) and automate via obsidian-cli.
+description: Work with Obsidian vaults (plain Markdown notes) and automate via obsidian-cli. Use when the user explicitly asks to read, create, search, or manage notes in an Obsidian vault. NOT for Notion, non-Obsidian markdown files, or general writing tasks that do not involve a vault.
 homepage: https://help.obsidian.md
 metadata:
   {

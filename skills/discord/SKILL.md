@@ -1,6 +1,6 @@
 ---
 name: discord
-description: "Discord ops via the message tool (channel=discord)."
+description: Discord ops via the message tool (channel=discord). Use when the user explicitly asks to send messages, react, or manage Discord channels. NOT for Telegram, Slack, or general messaging tasks not targeting Discord.
 metadata: { "openclaw": { "emoji": "🎮", "requires": { "config": ["channels.discord.token"] } } }
 allowed-tools: ["message"]
 ---

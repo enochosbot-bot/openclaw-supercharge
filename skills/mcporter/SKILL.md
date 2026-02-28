@@ -1,6 +1,6 @@
 ---
 name: mcporter
-description: Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.
+description: Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio). Use when the user explicitly asks to manage or call an MCP server. NOT for general tool calls, API requests not going through MCP, or tasks where a dedicated skill already exists.
 homepage: http://mcporter.dev
 metadata:
   {

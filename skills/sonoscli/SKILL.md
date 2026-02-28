@@ -1,6 +1,6 @@
 ---
 name: sonoscli
-description: Control Sonos speakers (discover/status/play/volume/group).
+description: Control Sonos speakers (discover/status/play/volume/group). Use when the user explicitly asks to control Sonos speakers. NOT for BluOS (use blucli), Spotify controls, or general music discussion without a Sonos action.
 homepage: https://sonoscli.sh
 metadata:
   {

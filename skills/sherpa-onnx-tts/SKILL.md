@@ -1,6 +1,6 @@
 ---
 name: sherpa-onnx-tts
-description: Local text-to-speech via sherpa-onnx (offline, no cloud)
+description: Local offline text-to-speech via sherpa-onnx (no cloud required). Use when the user asks to convert text to speech locally without any API. NOT for ElevenLabs TTS (use sag), audio transcription, or playback of existing audio files.
 metadata:
   {
     "openclaw":

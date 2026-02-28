@@ -1,6 +1,6 @@
 ---
 name: voice-call
-description: Start voice calls via the OpenClaw voice-call plugin.
+description: Start voice calls via the OpenClaw voice-call plugin. Use only when the user explicitly asks to start a voice call. NOT for TTS, audio playback, messaging, or any task not initiating an actual voice call.
 metadata:
   {
     "openclaw":

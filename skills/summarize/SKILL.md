@@ -1,6 +1,6 @@
 ---
 name: summarize
-description: Summarize or extract text/transcripts from URLs, podcasts, and local files (great fallback for “transcribe this YouTube/video”).
+description: Summarize or extract text/transcripts from URLs, podcasts, local files, and YouTube videos. Use when the user asks to summarize a URL or transcribe a video/audio source. NOT for live web search, real-time news, or tasks requiring structured data extraction beyond summarization.
 homepage: https://summarize.sh
 metadata:
   {

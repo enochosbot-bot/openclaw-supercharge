@@ -1,6 +1,6 @@
 ---
 name: blucli
-description: BluOS CLI (blu) for discovery, playback, grouping, and volume.
+description: BluOS CLI (blu) for discovery, playback, grouping, and volume. Use when the user explicitly asks to control BluOS speakers or players. NOT for Sonos, Spotify, or general music discussion.
 homepage: https://blucli.sh
 metadata:
   {

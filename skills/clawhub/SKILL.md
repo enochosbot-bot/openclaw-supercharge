@@ -1,6 +1,6 @@
 ---
 name: clawhub
-description: Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawhub CLI.
+description: Use the ClawHub CLI to search, install, update, and publish agent skills from clawhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders. NOT for using an already-installed skill, coding tasks unrelated to skill packaging, or general npm operations.
 metadata:
   {
     "openclaw":

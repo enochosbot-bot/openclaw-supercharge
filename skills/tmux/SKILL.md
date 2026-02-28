@@ -1,6 +1,6 @@
 ---
 name: tmux
-description: Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.
+description: Remote-control tmux sessions by sending keystrokes and scraping pane output. Use when the user explicitly asks to interact with a running tmux session or pane. NOT for general shell commands, new terminal sessions outside tmux, or tasks that do not require tmux session control.
 metadata:
   { "openclaw": { "emoji": "🧵", "os": ["darwin", "linux"], "requires": { "bins": ["tmux"] } } }
 ---

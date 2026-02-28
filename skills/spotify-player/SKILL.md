@@ -1,6 +1,6 @@
 ---
 name: spotify-player
-description: Terminal Spotify playback/search via spogo (preferred) or spotify_player.
+description: Terminal Spotify playback and search via spogo or spotify_player. Use when the user explicitly asks to play, search, or control Spotify. NOT for Sonos, BluOS, Apple Music, or general music recommendations.
 homepage: https://www.spotify.com
 metadata:
   {

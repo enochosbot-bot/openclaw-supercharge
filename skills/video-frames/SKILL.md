@@ -1,6 +1,6 @@
 ---
 name: video-frames
-description: Extract frames or short clips from videos using ffmpeg.
+description: Extract frames or short clips from videos using ffmpeg. Use when the user explicitly asks to extract frames, stills, or clips from a video file. NOT for full video transcoding, audio extraction, or tasks not requiring frame/clip extraction.
 homepage: https://ffmpeg.org
 metadata:
   {

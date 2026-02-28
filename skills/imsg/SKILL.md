@@ -1,6 +1,6 @@
 ---
 name: imsg
-description: iMessage/SMS CLI for listing chats, history, and sending messages via Messages.app.
+description: iMessage/SMS CLI for listing chats, history, and sending messages via Messages.app. Use when the user explicitly asks to send or read iMessages/SMS via Messages.app on macOS. NOT for BlueBubbles, Telegram, WhatsApp, or when the device is not a Mac with Messages.app available.
 homepage: https://imsg.to
 metadata:
   {
