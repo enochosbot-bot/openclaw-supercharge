@@ -146,3 +146,16 @@ See `security/` for full protocols.
 | [COST-ESTIMATION.md](docs/COST-ESTIMATION.md) | Realistic API costs by usage level |
 | [TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) | Common issues and fixes |
 | [MIGRATION.md](docs/MIGRATION.md) | Adopting this setup on existing OpenClaw |
+| [DAILY-LOG-TEMPLATE.md](docs/DAILY-LOG-TEMPLATE.md) | Format for Obsidian daily notes |
+| [MODEL-SELECTION.md](docs/MODEL-SELECTION.md) | When to use Opus vs Sonnet vs Haiku vs Codex |
+
+### Operations
+| Doc | Purpose |
+|-----|---------|
+| [notification-routing.md](ops/notification-routing.md) | Single source per workflow, no duplicate notifications |
+| [production-queue.md](ops/production-queue.md) | Ready-to-ship work items for Mission Pulse |
+| [tool-failure-log.md](ops/tool-failure-log.md) | Track dead ends so agents don't retry them |
+| [pruning-protocol.md](ops/pruning-protocol.md) | Keep workspace clean, prevent stale content |
+| [DEPRECATION-LOG.md](ops/DEPRECATION-LOG.md) | What's been superseded and why |
+| [agent-boundaries.md](ops/agent-boundaries.md) | What each agent can/cannot do |
+| [improvement-queue.md](ops/improvement-queue.md) | Track fixes and improvements |
