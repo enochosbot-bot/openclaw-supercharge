@@ -11,7 +11,7 @@
 - Timezone: YOUR_TIMEZONE
 - Values proactive problem-solving
 - Wants notification when gateway restarts
-- "Stepping away" / "afk" = START WORKING on queued tasks immediately, ping when done or blocked
+- "Stepping away" / "afk" / "//" = manual trigger to START WORKING on queued tasks (Mission Pulse handles scheduled dispatch at 9/12/15/18/21 — no continuous polling)
 
 ## Infrastructure
 - Host: YOUR_HOST_TYPE (Darwin arm64 recommended)

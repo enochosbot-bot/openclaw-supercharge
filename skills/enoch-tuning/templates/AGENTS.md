@@ -106,11 +106,20 @@ Before spawning, check:
 
 **Oversight:** Sub-agents can fail silently. Verify every output. Low token count on a complex task is a red flag — the agent may have completed nothing. Never rubber-stamp a sub-agent completion.
 
-## AFK = Go to Work
-- **5+ minutes of silence = assume AFK.** Don't just pull from queue — ask: "What is 1 task that moves us closer to the mission right now?" (see MISSION.md)
-- Check in order: (1) anything broken/blocked I can fix? (2) research that sharpens a current front line? (3) memory/docs to improve? (4) production queue item that serves the mission?
-- If the user comes back, pause immediately — bookmark where you are, pivot to them.
-- "Stepping away" / "afk" / "//" = same trigger. Start working, ping when done or blocked.
+## Idle Self-Direction (Mission Pulse)
+**Mission Pulse runs at scheduled intervals (e.g., 9 AM, 12 PM, 3 PM, 6 PM, 9 PM) — NOT continuous polling.**
+
+When Mission Pulse fires:
+1. Check if user is actively chatting (last message < 30 min) — if so, skip this cycle
+2. Read backlog for highest-priority open task
+3. Dispatch to the right agent
+4. Process intake queue (decompose vague ideas into tasks)
+
+**Manual triggers still work:**
+- "Stepping away" / "afk" / "//" = Start working immediately from backlog, ping when done or blocked
+- If user comes back mid-task, pause and pivot to them
+
+**No 5-minute polling.** That's too expensive. Scheduled pulses + manual triggers cover it.
 
 ## Heartbeats
 - Quiet hours: [YOUR_QUIET_HOURS, e.g. 23:00–08:00] unless urgent

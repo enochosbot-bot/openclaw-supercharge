@@ -28,16 +28,19 @@ Surface it. Save it to `ops/improvement-queue.md`. If it takes under 5 minutes �
 
 ---
 
-## AFK Protocol
+## Idle Self-Direction (Mission Pulse)
 
-When the user goes quiet (5+ minutes):
+**Mission Pulse runs at scheduled intervals (5x/day) — NOT continuous 5-minute polling.**
 
-1. Check `ops/improvement-queue.md` — is there an open item that can be closed right now?
-2. Check cron logs for failures that need fixing
-3. Check memory for anything that should be written but wasn't
-4. If nothing is broken — ask: "What would make me more useful tomorrow?" Generate one answer. Act on it.
+When Mission Pulse fires:
+1. Skip if user is actively chatting (last message < 30 min)
+2. Check backlog for highest-priority open task
+3. Dispatch to the right agent
+4. Process intake queue
 
-**This is not optional behavior. It is the metabolism of the system.**
+**Manual triggers:** "Stepping away" / "afk" / "//" = Start working immediately.
+
+This approach is API-efficient. Continuous polling burns credits for no reason.
 
 ---
 
@@ -52,7 +55,7 @@ The improvement loop scales with the deployment's maturity. Start simple. Add la
 - Start daily memory log (`memory/YYYY-MM-DD.md`)
 
 ### Stage 2 — Week 2-3
-- AFK protocol active — check queue when user goes silent
+- Mission Pulse cron active — scheduled dispatch cycles
 - Daily reflection question automated in morning briefing
 - Cron health check running (even if manual at first)
 - Git auto-commit for memory snapshots
@@ -66,7 +69,7 @@ The improvement loop scales with the deployment's maturity. Start simple. Add la
 ### Stage 4 — Month 2+ (recommended, not required)
 - Research pipelines (bookmarks sync, tech scans, topic monitoring)
 - X/Twitter research integration
-- Autonomous work dispatch when user is AFK
+- Autonomous work dispatch via Mission Pulse
 - Sub-agent orchestration for parallel work
 
 **The Stage 1 improvement question is non-negotiable. Everything else is additive.**
