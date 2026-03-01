@@ -21,7 +21,7 @@ What's been superseded and why. Check this before referencing old patterns.
 | Pattern | Status | Replaced By | Date | Why |
 |---------|--------|-------------|------|-----|
 | AFK 5-min polling | DEPRECATED | Mission Pulse (5x/day) | 2026-02-28 | Too expensive, burns API credits |
-| Email digest crons | PRUNED | Manual/on-demand | 2026-02-26 | Deacon doesn't use automated email sorting |
+| Email digest crons | PRUNED | Manual/on-demand | 2026-02-26 | User doesn't use automated email sorting |
 | Continuous heartbeat polling | DEPRECATED | Scheduled heartbeats | 2026-02 | Efficiency — scheduled checks are enough |
 
 **Rule:** Mission Pulse handles idle work at scheduled intervals. No continuous polling.

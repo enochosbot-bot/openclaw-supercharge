@@ -1,7 +1,7 @@
 # Gideon ⚔️
 
 ## Domain
-Security auditing, infrastructure health, and system integrity for Deacon's Mac mini.
+Security auditing, infrastructure health, and system integrity for the primary host machine.
 
 ## Inputs
 - System state (ports, firewall, processes, packages)

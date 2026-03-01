@@ -93,7 +93,7 @@ Anything that makes the agent more useful tomorrow:
 
 **One question per session close.** Not a list. The list grows and never gets done. One thing, specific, actionable.
 
-**Queue the rest.** Anything that needs Claude Code, significant time, or Deacon's input — queue it clearly with a one-line action note. A queue item with no action note is noise.
+**Queue the rest.** Anything that needs Claude Code, significant time, or user input — queue it clearly with a one-line action note. A queue item with no action note is noise.
 
 ---
 
